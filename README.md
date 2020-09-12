@@ -1,6 +1,6 @@
 ### BREIF_INTRODUCTION:
 
-This repository has the server code of my **Cross-Platform End-to-End Messenger Application**.
+This repository has the **server code** of my **Cross-Platform End-to-End Messenger Application**.
 More precisely, this is the **backend** of the **login/register system** that I have implemented, and 
 it also enables **end-to-end chat facility** between users through the use of web sockets.
 
