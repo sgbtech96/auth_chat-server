@@ -19,16 +19,16 @@ otpRouter.post("/sendOtp", async (req, res) => {
     }
     const email = value.email;
 
-    // try {
-    //     const userExists = await users.findOne({ email });
-    //     if (userExists) {
-    //         res.send({ error: "this email is unavailable!" });
-    //         return;
-    //     }
-    // } catch (e) {
-    //     console.log(e);
-    //     return;
-    // }
+    try {
+        const userExists = await users.findOne({ email });
+        if (userExists) {
+            res.send({ error: "this email is unavailable!" });
+            return;
+        }
+    } catch (e) {
+        console.log(e);
+        return;
+    }
 
     var minm = 10000;
     var maxm = 99999;
