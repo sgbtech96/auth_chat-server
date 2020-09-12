@@ -18,11 +18,6 @@ require("./database/connection");
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/", otpRouter);
-app.use("/", registerRouter);
-app.use("/", loginLogoutRouter);
-app.use("/", infoRouter);
-
 const genMsg = (text, from) => {
     return {
         text,
@@ -50,6 +45,11 @@ io.on("connection", (socket) => {
         );
     });
 });
+
+app.use("/", otpRouter);
+app.use("/", registerRouter);
+app.use("/", loginLogoutRouter);
+app.use("/", infoRouter);
 
 server.listen(port, () => {
     console.log(`server is up on port! ${port}`);
