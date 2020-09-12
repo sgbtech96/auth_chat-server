@@ -4,8 +4,8 @@ const { ADMIN_EMAIL, ADMIN_EMAIL_PASS } = process.env;
 var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: EMAIL,
-        pass: EMAIL_PASS,
+        user: ADMIN_EMAIL,
+        pass: ADMIN_EMAIL_PASS,
     },
 });
 
