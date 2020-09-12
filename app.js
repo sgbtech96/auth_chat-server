@@ -26,6 +26,10 @@ const genMsg = (text, from) => {
     };
 };
 
+app.get("/", (req, res) => {
+    res.send("Server is up and running :-)");
+});
+
 io.on("connection", (socket) => {
     console.log("someone connected :-)");
     socket.on("join", async ({ username, room }) => {
