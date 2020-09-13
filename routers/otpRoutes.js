@@ -25,6 +25,13 @@ otpRouter.post("/sendOtp", async (req, res) => {
             res.send({ error: "this email is unavailable!" });
             return;
         }
+        const alreadySent = await otps.findOne({ email });
+        if (alreadySent) {
+            res.send({
+                error: "an otp has already been sent to this email!",
+            });
+            return;
+        }
     } catch (e) {
         console.log(e);
         return;
@@ -47,13 +54,6 @@ otpRouter.post("/sendOtp", async (req, res) => {
             return;
         }
         try {
-            const alreadySent = await otps.findOne({ email });
-            if (alreadySent) {
-                res.send({
-                    error: "an otp has already been sent to this email!",
-                });
-                return;
-            }
             const newOtp = new otps({ email, otp, isVerified: false });
             await newOtp.save();
             res.send({ msg: `otp sent to email ${email}` });
