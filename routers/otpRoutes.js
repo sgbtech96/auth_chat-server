@@ -28,7 +28,7 @@ otpRouter.post("/sendOtp", async (req, res) => {
         const alreadySent = await otps.findOne({ email });
         if (alreadySent) {
             res.send({
-                error: "an otp has already been sent to this email!",
+                msg: "an otp has already been sent to this email!",
             });
             return;
         }
