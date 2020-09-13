@@ -47,16 +47,15 @@ otpRouter.post("/sendOtp", async (req, res) => {
             return;
         }
         try {
-            await otps.findOneAndUpdate(
-                { email },
-                {
-                    $set: {
-                        otp,
-                        isVerified: false,
-                    },
-                },
-                { upsert: true }
-            );
+            const alreadySent = await otps.findOne({ email });
+            if (alreadySent) {
+                res.send({
+                    error: "an otp has already been sent to this email!",
+                });
+                return;
+            }
+            const newOtp = new otps({ email, otp, isVerified: false });
+            await newOtp.save();
             res.send({ msg: `otp sent to email ${email}` });
         } catch (e) {
             console.log(e);
